@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>FaceRecognition</title>
+    <link rel="stylesheet" href="../static/styles/style_main.css" type="text/css">
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+</head>
+
+<body>
+    <div class="dropdown">
+        <button onclick="myDropdown()" class="dropbtn">{% if nameid %}{{ nameid }}{% endif %}</button>
+        <div id="myDropdown" class="dropdown-content">
+            <a href = "{{ url_for('change_pass') }}" id="drop_changepw">Change password</a>
+            <a href = "{{ url_for('logout') }}" id="drop_logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="top-row">
+        <div class="header-main">Recognition Face System</div>
+    </div>
+
+    <div class="mid-row">
+        <div class="txt-header">
+            <header id="txt-hinh-anh">HÌNH ẢNH NHẬN DIỆN</header>
+        </div>
+
+        <div class="left-column">
+            <h1>Nhấn để kết nối camera</h1>
+            <form method="post" action="/v1/connection">
+                <div class="type-2" id="btn">
+                    <div>
+                        <a href="" class="btn btn-2">
+                            <span>
+                                <input type="submit"
+                                       value="{% if namebtn %}{{ namebtn }}{% endif %}"
+                                       id="txt-input" name="cnt1"
+                                       onclick="return showcnt();">
+                            </span>
+                            <span class="round">
+                                <i class="fa fa-chevron-right"></i>
+                                <input type="submit" value=""
+                                       id="round-input"
+                                       name="cnt2"
+                                       onclick="return showcnt();">
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </form>
+            <div class="info">
+                {% if info %}
+                    <p id="in_fo"> {{ info }}
+                {% endif %}
+            </div>
+
+
+            <h2>Nhấn để mở cổng truyền thông</h2>
+            <form method="post" action="/v1/openport">
+                <input type="submit" value="OPEN"
+                       id="openport" name="openport">
+            </form>
+            {% if errorport %}
+                <p id="error-port">{{ errorport }}
+            {% endif %}
+
+
+            <h3>Thông tin người nhận diện:</h3>
+            <form method="post" action="/v1/refresh">
+                <input type="submit" id="nut_lam_moi" name="nut_lam_moi" value="">
+            </form>
+            <p id="ten">NAME:</p>
+            {% if nguoinhandien %}
+                <p id="nguoi-nhan-dien">{{ nguoinhandien }}
+            {% endif %}
+            <p id="kha_nang">PREDICT:</p>
+            {% if khanangnhandien %}
+                <p id="kha-nang-nhan-dien">{{ khanangnhandien }}
+            {% endif %}
+
+
+            <h4>Nhấn để cắt khuôn mặt người nhận diện</h4>
+            <form method="post" action="/">
+                <input type="submit" value="FACE CUT"
+                       id="facecut" name="facecut">
+            </form>
+        </div>
+
+        <div class="right-column">
+            <div class="header-video">Live Streaming</div>
+            <img src="{{ url_for('video_feed') }}" id="vid_streaming" alt="">
+            <div class="group_proc">
+                <p>Known Person</p>
+                <img src="../static/styles/photo.png" id="img_proc_1" alt="">
+                <p>Unknown Person</p>
+                <img src="../static/styles/photo.png" id="img_proc_2" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="bot-row">
+        <div class="txt-header">
+            <header id="txt-ds">LỊCH SỬ NHẬN DIỆN</header>
+        </div>
+
+        <div class="filter">
+            <input type="text"
+                   id="txt-search"
+                   placeholder="Search for names.."
+                   title="Type in a name"
+                   onkeyup="mySearch()">
+
+            <div class="filter-row0">
+                <label for="chon">Chọn: </label>
+                <select name="chon" id="chon">
+                            <option value="all">Tất cả</option>
+                            <option value="filter">Lọc</option>
+                        </select>
+
+                <input type="button" value="Tìm" id="btn-filter" onclick="mySearchBtn()">
+            </div>
+
+            <div class="filter-row1">
+                <label for="day" id="ngay">Ngày: </label>
+                <select name="day" id="day">
+                        <option value="none" selected></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+
+                <label for="month">Tháng: </label>
+                <select name="month" id="month">
+                        <option value="none" selected></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+
+                <label for="year">Năm: </label>
+                <select name="year" id="year">
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022" selected>2022</option>
+                    </select>
+
+                <span class="spin"></span>
+            </div>
+
+            <div class="filter-row2">
+                <label for="sex" id="gioitinh">Giới tính: </label>
+                <select name="sex" id="sex">
+                        <option value="none" selected></option>
+                        <option value="male">Nam</option>
+                        <option value="female">Nữ</option>
+                    </select>
+
+                <label for="country">Quốc tịch: </label>
+                <select name="country" id="country">
+                    <option value="none" selected></option>
+                    <option value="vn">Việt Nam</option>
+                    <option value="kh">Khác</option>
+                </select>
+
+                <span class="spin"></span>
+            </div>
+        </div>
+
+        <div class="header-table">
+            <table>
+                    <tr>
+                        <th>STT</th>
+                        <th>Thời gian</th>
+                        <th>Họ và tên</th>
+                        <th>Giới tính</th>
+                        <th>Quốc tịch</th>
+                    </tr>
+                </table>
+        </div>
+
+        <div class="scroll-table">
+            <table id="myTable">
+                    <tr>
+                        <td>1</td>
+                        <td>10:24-12/06/2022</td>
+                        <td>Nguyễn Minh Hiển</td>
+                        <td>Nam</td>
+                        <td>Việt Nam</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>5:23-16/06/2022</td>
+                        <td>Đinh Minh Triết</td>
+                        <td>Nữ</td>
+                        <td>TQ</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>15:20-18/06/2022</td>
+                        <td>Lê Minh Thành Trí</td>
+                        <td>Nữ</td>
+                        <td>Lao</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>12:00-30/06/2022</td>
+                        <td>Nguyễn Xuân Hiếu</td>
+                        <td>Nam</td>
+                        <td>Thai Lan</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>00:00-06/06/2022</td>
+                        <td>Lí Minh Toàn</td>
+                        <td>Nam</td>
+                        <td>Campuchia</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+        </div>
+    </div>
+
+</body>
+
+
+<script>
+    function mySearchBtn() {
+        let table, tr, td, i, c = 0, choice, sex, qt;
+        const a = [];
+        choice = document.getElementById("chon");
+        sex = document.getElementById("sex");
+        qt = document.getElementById("country");
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        if (choice.options[choice.selectedIndex].value === 'all'){
+            for (i = 0; i < tr.length; i++) {
+                tr[i].style.display = "";
+            }
+        }
+
+        else if (choice.options[choice.selectedIndex].value === 'filter') {
+            if (sex.options[sex.selectedIndex].value !== 'none') {
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[3];
+                    if (sex.options[sex.selectedIndex].text === td.textContent) {
+                        tr[i].style.display = "";
+                        a[c++] = i;
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+                if (qt.options[qt.selectedIndex].value !== 'none') {
+                    if(qt.options[qt.selectedIndex].value === 'vn') {
+                        for (i = 0; i < a.length; i++) {
+                            td = tr[a[i]].getElementsByTagName("td")[6];
+                            if (qt.options[qt.selectedIndex].text === td.textContent) {
+                                tr[a[i]].style.display = "";
+                            } else {
+                                tr[a[i]].style.display = "none";
+                            }
+                        }
+                    }
+                    else if (qt.options[qt.selectedIndex].value === 'kh'){
+                        for (i = 0; i < a.length; i++) {
+                            td = tr[a[i]].getElementsByTagName("td")[6];
+                            if (td.textContent !== 'Việt Nam' && td.textContent !== '') {
+                                tr[a[i]].style.display = "";
+                            } else {
+                                tr[a[i]].style.display = "none";
+                            }
+                        }
+                    }
+                }
+                return null;
+            }
+
+            if (qt.options[qt.selectedIndex].value !== 'none') {
+                if(qt.options[qt.selectedIndex].value === 'vn') {
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[6];
+                        if (qt.options[qt.selectedIndex].text === td.textContent) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+                else if (qt.options[qt.selectedIndex].value === 'kh'){
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[6];
+                        if (td.textContent !== 'Việt Nam' && td.textContent !== '') {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+         // more codes here
+        }
+    }
+
+    function mySearch() {
+        let input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("txt-search");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";}
+                else {
+                    tr[i].style.display = "none";}
+            }
+        }
+    }
+
+    function showcnt() {
+        let button = document.getElementById('txt-input');
+        let info = document.getElementById('in_fo');
+        if (button.value === 'CONNECT')
+        {info.textContent = 'connecting..';}
+        else {info.textContent = 'disconnecting..';}
+        document.getElementById('btn').hidden = true;
+    }
+
+    function myDropdown() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            let dropdowns = document.getElementsByClassName("dropdown-content");
+            let i;
+            for (i = 0; i < dropdowns.length; i++) {
+                let openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+
+</html>

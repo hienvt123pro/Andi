@@ -1,0 +1,16 @@
+stx = [0x02]
+etx = [0x03]
+sync = [0x16]
+cmd_open_door = [0x4f, 0x50, 0x45, 0x4e]
+cmd_close_door = [0x43, 0x4c, 0x4f, 0x53]
+cmd_on_led = [0x4f, 0x4c, 0x45, 0x44]
+cmd_off_led = [0x43, 0x4c, 0x45, 0x44]
+
+
+class TextResponseFromSTM:
+    def __init__(self):
+        self.led_cmd = b'CLED'
+        self.motor_cmd = b'CLOS'
+
+
+cmdResponse = TextResponseFromSTM()

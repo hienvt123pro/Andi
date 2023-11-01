@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>NewPassword</title>
+    <link rel="stylesheet" href="../static/styles/style_endsignup.css" type="text/css">
+</head>
+<body>
+    {% extends 'gui_forgetpw.html' %}
+    {% block body %}
+        <div class="noframe-traceback">
+
+            <form method="post" action="/v1/forget-status=success">
+                <input type="submit" class="closebtn" onclick="this.parentElement.style.display='none';" value="&times;">
+            </form>
+
+            <div class="info_box">
+                <p id="info"><strong>Info:</strong> Your request has been submitted successfully. Please check your email and click Continue to go to login page!
+            </div>
+
+            <form method="post" action="/v1/forget-status=success">
+                <input type="submit" id="continue" name="continue" value="Continue">
+            </form>
+        </div>
+    {% endblock %}
+</body>
+</html>

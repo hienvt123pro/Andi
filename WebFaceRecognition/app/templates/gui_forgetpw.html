@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>ForgetPassword?</title>
+    <link rel="stylesheet" href="../static/styles/style_newpw.css" type="text/css">
+</head>
+<body>
+    {% block body %}
+    {% endblock %}
+
+    <div class="container">
+        <div class="box">
+            <div class="title">NEW PASSWORD</div>
+            <form method="post" action="/v1/forget-password">
+
+                <div class="site_note">
+                    <p id="txt_site_note">Mật khẩu được gửi vào email bạn đã đăng ký trên hệ thống.</p>
+                </div>
+
+                <div class="site">
+                    <label for="id"></label>
+                    <input type="text" name="id" id="id" placeholder="Your ID">
+                    <span class="spin"></span>
+                </div>
+
+                <div class="site">
+                    <label for="sdt"></label>
+                    <label for="email"></label>
+                    <input type="text" name="email" id="email" placeholder="Your email">
+                    <span class="spin"></span>
+                </div>
+
+                <div class="button">
+                    <input type="submit" value="Apply" id="change" name="change">
+                    <input type="submit" value="Back" id="back" name="back">
+                </div>
+
+                {% if error %}
+                    <div class="warning_box">
+                        <p id="error"> {{ error }}
+                    </div>
+                {% endif %}
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

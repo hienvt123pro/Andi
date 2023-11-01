@@ -1,0 +1,81 @@
+html{
+  height: 100%;
+}
+
+body{
+    margin:0;
+    padding:0;
+    overflow-y: hidden;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    backdrop-filter: blur(5px);
+}
+
+.box, .box_signup{
+    filter: blur(2px);
+}
+
+.closebtn {
+    color: black;
+    font-weight: bold;
+    position: relative;
+    float: right;
+    right: 8px;
+    top: 5px;
+    font-size: 24px;
+    line-height: 22px;
+    cursor: pointer;
+    transition: 0.3s;
+    background: transparent;
+    border: none;
+}
+
+.noframe-traceback{
+    width: 800px;
+    height: 350px;
+    position: absolute;
+    top: 200px;
+    left: 23%;
+    z-index: 5;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+}
+
+.info_box{
+    position: relative;
+    width: 100%;
+    height: 70px;
+    margin-top: 70px;
+    float: left;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgba(0, 255, 0, 0.4);
+}
+
+.info_box #info{
+    position: absolute;
+    top: -2px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.8);
+    padding: 0 25px 0 25px;
+}
+
+.noframe-traceback #continue{
+    width: 100px;
+    height: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    position: absolute;
+    float: left;
+    left: 340px;
+    top: 190px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.noframe-traceback #continue:hover{
+    background-color: gray;
+}

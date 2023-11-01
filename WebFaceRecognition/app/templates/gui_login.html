@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/styles/style_login.css" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <div class="box_login">
+            <div class="title">LOGIN</div>
+            <form method="post" action="/v1/login">
+                <div class="login_site">
+                    <label for="id"></label>
+                    <input type="text" name="id" id="id" placeholder="CMND/CCCD">
+                    <span class="spin"></span>
+                </div>
+
+                <div class="login_site">
+                    <label for="pw"></label>
+                    <input type="password" name="pw" id="pw" placeholder="Password">
+                    <span class="spin"></span>
+                </div>
+
+                <div class="button_login">
+                     <input type="submit" value="Go" id="login">
+                </div>
+
+                <div class="optional">
+                    <p>________________________</p>
+                    <a href = "{{ url_for('signup1') }}" target="_blank"><b>Create new account</b></a>
+                    <br>
+                    <br>
+                    <a href = "{{ url_for('forget_pass') }}"><b>Forget password?</b></a>
+                </div>
+
+                {% if error %}
+                <div class="warning_box">
+                    <p id="error">{{ error }}
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../static/styles/style_signup.css" type="text/css">
+</head>
+<body>
+
+    {% block body %}
+    {% endblock %}
+
+    <div class="container-signup">
+        <div class="box_signup">
+            <div class="title">SIGN UP</div>
+            <form method="post" action="/v1/signup-info">
+                <div class="signup_site">
+                    <label for="id"></label>
+                    <input id="id"
+                           name="id"
+                           onkeypress="return /\d/i.test(event.key)"
+                           placeholder="Type cmnd/cccd (12 numbers)"
+                           type="text">
+                    <span class="spin"></span>
+                </div>
+
+                <div class="signup_site">
+                    <label for="pw"></label>
+                    <input type="password" name="pw" id="pw" placeholder="Type password">
+                    <span class="spin"></span>
+                </div>
+
+                <div class="signup_site">
+                    <label for="rpw"></label>
+                    <input type="password" name="rpw" id="rpw" placeholder="Re-type password">
+                    <span class="spin"></span>
+                </div>
+
+                <div class="signup_site">
+                    <label for="email"></label>
+                    <input id="email"
+                           name="email"
+                           placeholder="Email address (@gmail.com)"
+                           type="text">
+                    <span class="spin"></span>
+                </div>
+
+                <div class="signup_site">
+                    <label for="opt_lv" id="lb-lv">Option required: admin or guest account for login</label>
+                    <select name="opt_lv" id="opt_lv">
+                        <option selected>Guest</option>
+                        <option disabled style="color: #ddde">(Admin)</option>
+                    </select>
+                </div>
+
+                <div class="button_signup">
+                     <input type="submit" value="Apply" id="signup">
+                </div>
+
+                {% if error %}
+                <div class="warning_box">
+                    <p id="error">{{ error }}
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

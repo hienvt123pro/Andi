@@ -1,0 +1,8 @@
+# https://kanchanardj.medium.com/how-to-add-images-to-html-in-a-flask-app-4dbcc92e3aeb
+# https://towardsdatascience.com/video-streaming-in-web-browsers-with-opencv-flask-93a38846fe00
+# https://www.tutorialspoint.com/flask/flask_message_flashing.htm#
+# https://stackoverflow.com/questions/43826553/html-how-to-transform-a-combobox-into-a-filtered-search-field
+# https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_filter_table
+# http://127.0.0.1:5000/login
+
+

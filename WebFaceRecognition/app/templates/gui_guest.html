@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>FaceRecognition</title>
+    <link rel="stylesheet" href="../static/styles/style_main.css" type="text/css">
+</head>
+<body>
+    <div class="dropdown">
+        <button onclick="myDropdown()" class="dropbtn">{% if nameid %}{{ nameid }}{% endif %}</button>
+        <div id="myDropdown" class="dropdown-content">
+            <a href = "{{ url_for('change_pass') }}" id="drop_changepw">Change password</a>
+            <a href = "{{ url_for('logout') }}" id="drop_logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="top-row">
+        <div class="header-main">Recognition Face System</div>
+    </div>
+
+    <div class="mid-row">
+        <div class="txt-header">
+            <header id="txt-hinh-anh">Streaming Camera</header>
+        </div>
+
+        <div class="right-column" id="site">
+            <br>
+            <br>
+            <img src="{{ url_for('video_feed') }}" id="video" alt="">
+        </div>
+    </div>
+</body>
+
+<style>
+    #video{
+        float: top;
+        top: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 900px;
+        height: 600px;
+        position: relative;
+    }
+
+    #site{
+        position: relative;
+        float: top;
+        top: 0;
+        right: 200px;
+    }
+
+</style>
+
+<script>
+    function myDropdown() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            let dropdowns = document.getElementsByClassName("dropdown-content");
+            let i;
+            for (i = 0; i < dropdowns.length; i++) {
+                let openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+</html>
